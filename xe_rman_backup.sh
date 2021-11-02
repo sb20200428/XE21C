@@ -1,17 +1,20 @@
 
 #!/bin/sh
-# This script assumes that user can connect using "/ as sysdba" 
+# run as oracle user 
 
+#Comment out if you are running 21cXE
 export ORACLE_HOME=/opt/oracle/product/18c/dbhomeXE
-#or if you're running 21c
+#Uncomment if you are running 21cXE
 # export ORACLE_HOME=/opt/oracle/product/21c/dbhomeXE
 export ORACLE_SID=XE
 export PATH=$ORACLE_HOME/bin:$PATH
 
 TMPDIR=/tmp
 
-rman_backup_current=<<path_to_recovery>>/oxe_backup_current.log
-rman_backup_prev=<<path_to_recovery>>/oxe_backup_previous.log
+#rman_backup_current=<<path_to_recovery>>/oxe_backup_current.log
+rman_backup_current=/home/oracle/fast_recovery_area/oxe_backup_current.log
+#rman_backup_prev=<<path_to_recovery>>/oxe_backup_previous.log
+rman_backup_prev=/home/oracle/fast_recovery_area/oxe_backup_previous.log
 
 rman_backup=${TMPDIR}/rman_backup$$.log
 echo XE Backup Log > $rman_backup
